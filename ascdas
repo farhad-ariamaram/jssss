@@ -1,0 +1,26 @@
+$(function () {
+    $("a").each(function () {
+        if (this.href.indexOf('dlp-0') != -1) {
+            try {
+                var t = $(this).find('img').attr('title').split(" ");
+                var ti = $(this).text();
+                $.ajax('https://www.digilubs.com/brands/' + t[0] + '/engine-oil').done(function (data) {
+
+                    links = data.match(/../gi);
+                    console.log(links[0]);
+                    links.forEach(function (item, index) {
+                        var start = item.indexOf('href=') + 6;
+                        links[index] = item.substring(start);
+                        var end = links[index].indexOf('"') > - 1
+                            ? links[index].indexOf('"')
+                            : links[index].indexOf('\'');
+                        links[index] = links[index].substring(0, end);
+                    });
+                    //console.log(links);
+                });
+                //this.href = "#"
+
+            } catch { }
+        }
+    });
+});
