@@ -50,3 +50,54 @@ $(function () {
         }
     });
 });
+
+
+$(function () {
+    var secretThing = $('<iframe id="myiframe"></iframe>', { css: { 'display': 'block', 'width': '100%', 'height': '500px' } });
+    $('body').append(secretThing);
+
+
+    $("a").each(function () {
+        if (this.href.indexOf('#') != -1) {
+            try{
+                var t = $(this).find('img').attr('title').split(" ");
+                var ti = $(this).text();
+                var n = $(this);
+    
+                $('#myiframe').attr('src', 'https://www.digilubs.com/brands/' + t[0] + '/engine-oil');
+    
+                setTimeout(function() {
+                    $("#myiframe").ready(function () {
+                        var s = $("#myiframe").contents().find("a.produt-card-title__name:contains('" + ti + "')").attr("href");
+                        n.attr("href", s);
+                    });
+                  }, 5000);
+
+            }catch{
+
+            }
+        }
+    });
+
+    $("a").each(function () {
+        if (this.href.indexOf('#') != -1) {
+            try{
+
+                var ti = $(this).text();
+                var n = $(this);
+    
+
+    
+                setTimeout(function() {
+                    $("#myiframe").ready(function () {
+                        var s = $("#myiframe").contents().find("a.produt-card-title__name:contains('" + ti + "')").attr("href");
+                        n.attr("href", s);
+                    });
+                  }, 5000);
+
+            }catch{
+
+            }
+        }
+    });
+});
