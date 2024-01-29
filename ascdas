@@ -24,3 +24,29 @@ $(function () {
         }
     });
 });
+
+$(function () {
+    $("a").each(function () {
+        if (this.href.indexOf('#') != -1) {
+            
+            try {
+                var d = $(this);
+                var ti = $(this).text();
+                console.log(ti);
+                var n = "";
+                $.ajax({ 
+                    type: 'GET', 
+                    url: 'https://raw.githubusercontent.com/farhad-ariamaram/jssss/main/myjson.json', 
+                    data: {}, 
+                    dataType: 'json',
+                    success: function (data) { 
+
+                        n = data[ti];
+                        d.attr("href",n);
+                    }
+                });
+               
+            } catch { }
+        }
+    });
+});
